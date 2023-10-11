@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  #`inadyn:` определяет службу для обновления DNS записей в файле Docker Compose.
+  inadyn:
+    container_name: inadyn
+    deploy:
+      restart_policy:
+        condition: always
+        delay: 5s
+    image: troglobit/inadyn:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+      traefik.enable: "false"
+    volumes:
+      - "./inadyn/inadyn.conf:/etc/inadyn.conf"
+
+networks:
+  default:
+    external: true
+    name: $NETWORK
