@@ -16,6 +16,6 @@ services:
       - "./inadyn/inadyn.conf:/etc/inadyn.conf"
 
 networks:
-  default:
+  external:
     external: true
     name: $NETWORK
